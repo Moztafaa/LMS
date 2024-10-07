@@ -1,1 +1,3 @@
-LMS\appsettings.json
+LMS/appsettings.json
+LMS/appsettings.Development.json
+LMS/appsettings.*.json
