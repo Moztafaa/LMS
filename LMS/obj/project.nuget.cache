@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "KicxKvVSIX0=",
+  "dgSpecHash": "QjS+5NNnqVnqNgGccRmewnxk/eUWpV6xWUAZL/B7qTvmEPnVKZHHpTeX3H/S73La2q+JOQxB/UV7rs/1s1AuEw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Mostafa Ibrahim\\Documents\\DotNet_Projects\\final project\\LMS\\LMS\\LMS.csproj",
+  "projectFilePath": "C:\\Users\\Mostafa Ibrahim\\RiderProjects\\LMS\\LMS\\LMS.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Mostafa Ibrahim\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\Mostafa Ibrahim\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",
