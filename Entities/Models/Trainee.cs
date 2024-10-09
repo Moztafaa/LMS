@@ -16,8 +16,7 @@ namespace Entities.Models
         public int Track_id { get; set; }
         Track Track { get; set; }
 
-        public List<CrsResults> Results { get; set; }
-
+        public List<TraineeCourse> TraineeCourses { get; set; }
 
     }
 }

@@ -1,4 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿    using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Entities.Models
 {
@@ -25,8 +25,7 @@ namespace Entities.Models
         public Instructor Instructor { get; set; }
       
 
-        public List<CrsResults> Results { get; set; }
-
+        public List<TraineeCourse> TraineeCourses { get; set; }
 
     }
 }

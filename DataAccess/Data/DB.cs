@@ -10,6 +10,7 @@ namespace Entities.Models
         public DbSet<Instructor> Instructors { get; set; }
         public DbSet<Trainee> Trainees { get; set; }
         public DbSet<CrsResults> Results { get; set; }
+        public DbSet<TraineeCourse> TraineeCourses { get; set; }
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
 
         public DB(DbContextOptions<DB> options) : base(options)
