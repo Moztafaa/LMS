@@ -41,7 +41,7 @@
                     <a href="https://localhost:44345" class="active">Home</a>
                 </li>
                 <li>
-                    <a href="about.html">About</a>
+                    <a asp-controller="Home" asp-action="About">About</a>
                 </li>
                 <li>
                     <a asp-controller="Course" asp-action="Index">Courses</a>
@@ -50,7 +50,7 @@
                     <a asp-controller="Instructor" asp-action="Index">Trainers</a>
                 </li>
                 <li>
-                    <a href="contact.html">Contact</a>
+                    <a asp-controller="Home" asp-action="Contact">Contact</a>
                 </li>
                 @if (User.Identity.IsAuthenticated && User.IsInRole(SD.Role_User))
                 {

@@ -37,5 +37,17 @@ namespace LMS.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        // About page
+        public IActionResult About()
+        {
+            return View();
+        }
+
+        // contact page
+        public IActionResult Contact()
+        {
+            return View();
+        }
     }
 }
