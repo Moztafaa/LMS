@@ -1,7 +1,5 @@
-﻿namespace Entities
-{
-    public class Class1
-    {
+﻿namespace Entities;
 
-    }
+public class Class1
+{
 }

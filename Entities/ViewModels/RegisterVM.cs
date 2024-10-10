@@ -26,6 +26,5 @@ public class RegisterVM
     public string? RedirectUrl { get; set; }
     public string? Role { get; set; }
 
-    [ValidateNever]
-    public IEnumerable<SelectListItem>? RoleList { get; set; }
+    [ValidateNever] public IEnumerable<SelectListItem>? RoleList { get; set; }
 }

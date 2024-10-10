@@ -1,41 +1,37 @@
-﻿using Entities.Models;
-using Entities.IRepository;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Entities.IRepository;
+using Entities.Models;
 
-namespace DataAccess.RepositoryImp
+namespace DataAccess.RepositoryImp;
+
+public class UnitOfWork : IunitOfWork
 {
-    public class UnitOfWork : IunitOfWork
+    // DB context;
+    private readonly DB context;
+
+    public UnitOfWork(DB context)
     {
-        public Iinstructor instructorrepo { get; private set; }
+        // context = new DB();
+        this.context = context;
+        instructorrepo = new InstructorRepo(context);
+        Courserepo = new CourseRepo(context);
+    }
 
-        public Icourse Courserepo { get; private set; }
+    public Iinstructor instructorrepo { get; }
 
-        // DB context;
-        private readonly DB context;
-        public UnitOfWork( DB context)
-        {
-            // context = new DB();
-            this.context = context;
-            instructorrepo=new InstructorRepo(context);
-            Courserepo = new CourseRepo(context);
-        }
-        public async Task<int> Complete()
-        {
-            return await context.SaveChangesAsync();
-        }
+    public Icourse Courserepo { get; }
 
-        public void Dispose()
-        {
-           context.Dispose();
-        }
+    public async Task<int> Complete()
+    {
+        return await context.SaveChangesAsync();
+    }
 
-        public async ValueTask DisposeAsync()
-        {
-            await context.DisposeAsync();
-        }
+    public void Dispose()
+    {
+        context.Dispose();
+    }
+
+    public async ValueTask DisposeAsync()
+    {
+        await context.DisposeAsync();
     }
 }

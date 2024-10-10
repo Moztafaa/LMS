@@ -5,16 +5,15 @@ using LMS.Common.Utility;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace LMS.Controllers;
 
 public class AccountController : Controller
 {
+    private readonly RoleManager<IdentityRole> _roleManager;
+    private readonly SignInManager<ApplicationUser> _signInManager;
     private readonly IunitOfWork _unitOfWork;
     private readonly UserManager<ApplicationUser> _userManager;
-    private readonly SignInManager<ApplicationUser> _signInManager;
-    private readonly RoleManager<IdentityRole> _roleManager;
 
     public AccountController(IunitOfWork unitOfWork,
         UserManager<ApplicationUser> userManager,
@@ -44,22 +43,15 @@ public class AccountController : Controller
         if (ModelState.IsValid)
         {
             var result = await _signInManager
-                .PasswordSignInAsync(loginVM.Email, loginVM.Password, loginVM.RememberMe, lockoutOnFailure: false);
+                .PasswordSignInAsync(loginVM.Email, loginVM.Password, loginVM.RememberMe, false);
             if (result.Succeeded)
             {
                 if (string.IsNullOrEmpty(loginVM.RedirectUrl))
-                {
                     return RedirectToAction("Index", "Home");
-                }
-                else
-                {
-                    return LocalRedirect(loginVM.RedirectUrl);
-                }
+                return LocalRedirect(loginVM.RedirectUrl);
             }
-            else
-            {
-                ModelState.AddModelError("", "Invalid login attempt.");
-            }
+
+            ModelState.AddModelError("", "Invalid login attempt.");
         }
 
         return View(loginVM);
@@ -95,35 +87,23 @@ public class AccountController : Controller
             PhoneNumber = registerVM.PhoneNumber,
             NormalizedEmail = registerVM.Email.ToUpper(),
             EmailConfirmed = true,
-            UserName = registerVM.Email,
+            UserName = registerVM.Email
         };
         var result = await _userManager.CreateAsync(user, registerVM.Password);
         if (result.Succeeded)
         {
             if (!string.IsNullOrEmpty(registerVM.Role))
-            {
                 await _userManager.AddToRoleAsync(user, registerVM.Role);
-            }
             else
-            {
                 await _userManager.AddToRoleAsync(user, SD.Role_User);
-            }
 
-            await _signInManager.SignInAsync(user, isPersistent: false);
+            await _signInManager.SignInAsync(user, false);
             if (string.IsNullOrEmpty(registerVM.RedirectUrl))
-            {
                 return RedirectToAction("Index", "Home");
-            }
-            else
-            {
-                return LocalRedirect(registerVM.RedirectUrl);
-            }
+            return LocalRedirect(registerVM.RedirectUrl);
         }
 
-        foreach (var error in result.Errors)
-        {
-            ModelState.AddModelError("", error.Description);
-        }
+        foreach (var error in result.Errors) ModelState.AddModelError("", error.Description);
 
         registerVM.RoleList = _roleManager.Roles.Select(x => new SelectListItem
         {
@@ -132,7 +112,7 @@ public class AccountController : Controller
         });
         return View(registerVM);
     }
-    
+
     public async Task<IActionResult> Logout()
     {
         await _signInManager.SignOutAsync();

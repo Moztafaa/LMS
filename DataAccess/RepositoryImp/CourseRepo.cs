@@ -1,24 +1,19 @@
-﻿using Entities.Models;
-using Entities.IRepository;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Entities.IRepository;
+using Entities.Models;
 
-namespace DataAccess.RepositoryImp
+namespace DataAccess.RepositoryImp;
+
+public class CourseRepo : GenericRepository<Course>, Icourse
 {
-    public class CourseRepo : GenericRepository<Course>, Icourse
-    {
+    private readonly DB context;
 
-        readonly DB context;
-        public CourseRepo(DB context) : base(context)
-        {
-            this.context = context;
-        }
-        public void Update(Course course)
-        {
-            context.Update(course);   
-        }
+    public CourseRepo(DB context) : base(context)
+    {
+        this.context = context;
+    }
+
+    public void Update(Course course)
+    {
+        context.Update(course);
     }
 }
