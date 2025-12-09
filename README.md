@@ -66,6 +66,8 @@ cd LMS
 
 Update the connection string in `LMS/appsettings.json`:
 
+⚠️ **Important**: Replace `YOUR_SERVER`, `YOUR_USERNAME`, and `YOUR_PASSWORD` with your actual SQL Server credentials. Never commit real credentials to version control.
+
 ```json
 {
   "ConnectionStrings": {
@@ -275,8 +277,6 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ```
-
-See the [LICENSE](LICENSE) file for more details.
 
 ## 📧 Contact & Support
 
